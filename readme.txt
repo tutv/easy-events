@@ -24,6 +24,8 @@ Create and manage event extremely simple event. Including event widget, beautifu
 
 == Frequently Asked Questions ==
 
+= How to use? =
+
 == Screenshots ==
 
 = Widget =
