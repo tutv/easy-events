@@ -13,7 +13,7 @@ function easy_event_register_event_post_type() {
 			'Event', 'Post Type Singular Name',
 			'easy_event'
 		),
-		'menu_name'          => __( 'Event', 'easy_event' ),
+		'menu_name'          => __( 'Easy Event', 'easy_event' ),
 		'name_admin_bar'     => __( 'Event', 'easy_event' ),
 		'parent_item_colon'  => __( 'Parent Event:', 'easy_event' ),
 		'all_items'          => __( 'All Events', 'easy_event' ),
@@ -55,7 +55,6 @@ function easy_event_register_event_post_type() {
 		'menu_icon'           => 'dashicons-calendar',
 	);
 	register_post_type( 'easy_event', $args );
-
 }
 
-add_action( 'init', 'easy_event_register_event_post_type', 0 );
+add_action( 'easy_event_init', 'easy_event_register_event_post_type' );
