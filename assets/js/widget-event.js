@@ -3,7 +3,7 @@
  */
 
 jQuery(document).ready(function ($) {
-    var ul_list_events = $('.fituet-event .list-events');
+    var ul_list_events = $('.easy-event .list-events');
     var show_per_page = ul_list_events.attr('data-number');
 
     var list_events = ul_list_events.find('li');
@@ -12,7 +12,7 @@ jQuery(document).ready(function ($) {
         show_per_page = count_events;
     }
 
-    $('.fituet-event.vticker').vTicker('init', {
+    $('.easy-event.vticker').vTicker('init', {
         speed: 1000,
         pause: 4000,
         showItems: show_per_page,

@@ -81,8 +81,6 @@ class Easy_Event_Widget extends WP_Widget {
 			       type="number" value="<?php echo esc_attr( $per_page ); ?>">
 		</p>
 		<?php
-
-		return 'noform';
 	}
 
 	/**

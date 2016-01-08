@@ -10,6 +10,9 @@
 }
 
 .easy-event {
+	padding-left: 10px;
+	padding-right: 10px;
+
 	.list-events {
 		li {
 			a {
@@ -18,9 +21,12 @@
 
 			.left {
 				border: 1px solid #333;
-				padding: 5px 15px;
+				padding-top: 5px;
+				padding-bottom: 5px;
 				margin-right: 10px;
 				margin-bottom: 10px;
+				width: 60px;
+				text-align: center;
 
 				.day {
 					display: block;
