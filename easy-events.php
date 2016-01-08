@@ -20,6 +20,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 
+define( 'EASY_EVENT_URI', untrailingslashit( plugins_url( '/', __FILE__ ) ) );
+define( 'EASY_EVENT_DIR', untrailingslashit( plugin_dir_path( __FILE__ ) ) );
+
 if ( ! class_exists( 'Easy_Event' ) ) :
 
 	class Easy_Event {
@@ -30,6 +33,7 @@ if ( ! class_exists( 'Easy_Event' ) ) :
 
 		function __construct() {
 			add_action( 'init', array( $this, 'init' ) );
+			add_action( 'widgets_init', array( $this, 'widget' ) );
 		}
 
 		/**
@@ -45,30 +49,20 @@ if ( ! class_exists( 'Easy_Event' ) ) :
 		}
 
 		public function libraries() {
-			include_once( 'libraries/metaboxio/meta-box.php' );
+			require_once 'libraries/metaboxio/meta-box.php';
 		}
 
 		/**
 		 * Include required core
 		 */
 		public function includes() {
-			include_once( 'includes/event-post-type.php' );
+			require_once 'includes/event-post-type.php';
+			require_once 'includes/metabox.php';
 		}
 
-		/**
-		 * Get the plugin url.
-		 * @return string
-		 */
-		public function plugin_url() {
-			return untrailingslashit( plugins_url( '/', __FILE__ ) );
-		}
-
-		/**
-		 * Get the plugin path.
-		 * @return string
-		 */
-		public function plugin_path() {
-			return untrailingslashit( plugin_dir_path( __FILE__ ) );
+		public function widget() {
+			require_once 'widget/functions.php';
+			require_once 'widget/event-widget.php';
 		}
 	}
 
