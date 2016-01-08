@@ -10,11 +10,10 @@
  * Requires at least: 4.1
  * Tested up to: 4.4
  *
- * Text Domain: easy-events
+ * Text Domain: easy_event
  *
  * @package  Easy_Event
- * @category Core
- * @author   WooThemes
+ * @author   WPArena
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -30,15 +29,30 @@ if ( ! class_exists( 'Easy_Event' ) ) :
 		public $version = '1.0.0';
 
 		function __construct() {
-
+			add_action( 'init', array( $this, 'init' ) );
 		}
 
+		/**
+		 * Init Easy Events
+		 */
 		public function init() {
+			do_action( 'before_easy_event_init' );
 
+			$this->libraries();
+			$this->includes();
+
+			do_action( 'easy_event_init' );
 		}
 
-		public function includes() {
+		public function libraries() {
+			include_once( 'libraries/metaboxio/meta-box.php' );
+		}
 
+		/**
+		 * Include required core
+		 */
+		public function includes() {
+			include_once( 'includes/event-post-type.php' );
 		}
 
 		/**
