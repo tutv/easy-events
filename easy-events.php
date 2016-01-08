@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Plugin Name: Easy Events
+ * Plugin Name: Easy Events WP
  * Plugin URI: http://www.woothemes.com/woocommerce/
  * Description: Make
  * Version: 1.0.0

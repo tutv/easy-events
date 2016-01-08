@@ -1,4 +1,4 @@
-=== Easy Events ===
+=== Easy Events WP ===
 Contributors: tutv95, wordpressarena
 Donate link: https://wparena.com/
 Tags: event, widget, custom-post-type
