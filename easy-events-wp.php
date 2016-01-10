@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Plugin Name: Easy Events WP
- * Plugin URI: http://www.woothemes.com/woocommerce/
- * Description: Make
+ * Plugin Name: Event WP
+ * Plugin URI: https://wparena.com
+ * Description: Create and manage event extremely simple event. Including event widget.
  * Version: 1.0.0
  * Author: WPArena
  * Author URI: https://wparena.com
@@ -22,15 +22,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 define( 'EASY_EVENT_URI', untrailingslashit( plugins_url( '/', __FILE__ ) ) );
 define( 'EASY_EVENT_DIR', untrailingslashit( plugin_dir_path( __FILE__ ) ) );
+define( 'EASY_EVENT_VERSION', '1.0.0' );
 
 if ( ! class_exists( 'Easy_Event' ) ) :
 
 	class Easy_Event {
 		/**
-		 * @var string
+		 * Easy_Event constructor.
 		 */
-		public $version = '1.0.0';
-
 		function __construct() {
 			add_action( 'init', array( $this, 'init' ) );
 			add_action( 'widgets_init', array( $this, 'widget' ) );
@@ -48,6 +47,9 @@ if ( ! class_exists( 'Easy_Event' ) ) :
 			do_action( 'easy_event_init' );
 		}
 
+		/**
+		 * Include libraries
+		 */
 		public function libraries() {
 			require_once 'libraries/metaboxio/meta-box.php';
 		}
@@ -60,6 +62,9 @@ if ( ! class_exists( 'Easy_Event' ) ) :
 			require_once 'includes/metabox.php';
 		}
 
+		/**
+		 * Include Widgets
+		 */
 		public function widget() {
 			require_once 'widget/functions.php';
 			require_once 'widget/event-widget.php';

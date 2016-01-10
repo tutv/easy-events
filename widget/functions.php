@@ -72,15 +72,16 @@ function easy_event_upcoming_loop_to_widget( $show ) {
 	 */
 	wp_enqueue_script(
 		'jquery-vticker',
-		EASY_EVENT_URI . '/assets/js/jquery.vticker.min.js', array( 'jquery' )
+		EASY_EVENT_URI . '/assets/js/jquery.vticker.min.js', array( 'jquery' ), EASY_EVENT_VERSION
 	);
 	wp_enqueue_script(
 		'widget-event',
 		EASY_EVENT_URI . '/assets/js/widget-event.js',
-		array( 'jquery', 'jquery-vticker' )
+		array( 'jquery', 'jquery-vticker' ),
+		EASY_EVENT_VERSION
 	);
 
-	wp_enqueue_style( 'easy_event_widget', EASY_EVENT_URI . '/assets/css/style.min.css', array() );
+	wp_enqueue_style( 'easy_event_widget', EASY_EVENT_URI . '/assets/css/style.min.css', array(), EASY_EVENT_VERSION );
 }
 
 function easy_event_get_time( $post_id ) {
