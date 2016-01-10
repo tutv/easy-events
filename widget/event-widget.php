@@ -17,9 +17,9 @@ class Easy_Event_Widget extends WP_Widget {
 	function __construct() {
 		parent::__construct(
 			'Easy_Event_Widget', // Base ID
-			__( 'Easy Events', 'fituet' ), // Name
+			__( 'Upcoming Events', 'easy_event' ), // Name
 			array(
-				'description' => __( 'Easy Events', 'fituet' ),
+				'description' => __( 'Upcoming Events, Widget just shows upcoming events.', 'easy_event' ),
 			)
 		);
 	}
@@ -60,7 +60,7 @@ class Easy_Event_Widget extends WP_Widget {
 	 */
 	public function form( $instance ) {
 		$title    = ! empty( $instance['title'] ) ? $instance['title']
-			: __( 'Upcoming events', 'fituet' );
+			: __( 'Upcoming events', 'easy_event' );
 		$per_page = ! empty( $instance['per_page'] ) ? $instance['per_page']
 			: 5;
 		?>

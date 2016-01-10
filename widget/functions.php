@@ -24,7 +24,11 @@ function easy_event_upcoming_loop_to_widget( $show ) {
 		while ( $the_query->have_posts() ) {
 			$the_query->the_post();
 
-			$date_event = get_post_meta( get_the_ID(), 'easy_event_date', true );
+			$date_event = get_post_meta( get_the_ID(), 'easy_event_date_start', true );
+
+			if ( $date_event == '' || $date_event == false ) {
+				continue;
+			}
 			$date_event = date_create()->createFromFormat(
 				$date_format,
 				$date_event
@@ -46,13 +50,13 @@ function easy_event_upcoming_loop_to_widget( $show ) {
 		echo '<div class="easy-event vticker">';
 		echo '<ul class="list-events" data-number="' . $show . '">';
 		foreach ( $post_event_ids as $id ) {
-			$date_event = get_post_meta( $id, 'easy_event_date', true );
+			$date_event = get_post_meta( $id, 'easy_event_date_start', true );
 			$date_event = date_create()->createFromFormat(
 				$date_format,
 				$date_event
 			);
 
-			echo '<li number-date="' . get_post_meta( $id, 'easy_event_date', true ) . '">
+			echo '<li number-date="' . get_post_meta( $id, 'easy_event_date_start', true ) . '">
 					<div class="left">
 						<span class="day">' . $date_event->format( 'd' ) . '</span>
 						<span class="moth">' . $date_event->format( 'M' ) . '</span>
@@ -88,7 +92,7 @@ function easy_event_get_time( $post_id ) {
 	$args = array(
 		'type' => 'date',
 	);
-	$date = rwmb_meta( 'easy_event_date', $args, $post_id );
+	$date = rwmb_meta( 'easy_event_date_start', $args, $post_id );
 
 	return $date;
 }
