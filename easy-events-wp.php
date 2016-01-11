@@ -8,7 +8,7 @@
  * Author: WPArena
  * Author URI: https://wparena.com
  * Requires at least: 4.1
- * Tested up to: 4.4
+ * Tested up to: 4.4.1
  *
  * Text Domain: easy_event
  *
