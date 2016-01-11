@@ -4,7 +4,7 @@
  * Plugin Name: Event WP
  * Plugin URI: https://wparena.com
  * Description: Create and manage event extremely simple event. Including event widget.
- * Version: 1.0.0
+ * Version: 1.1.0
  * Author: WPArena
  * Author URI: https://wparena.com
  * Requires at least: 4.1
@@ -22,7 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 define( 'EASY_EVENT_URI', untrailingslashit( plugins_url( '/', __FILE__ ) ) );
 define( 'EASY_EVENT_DIR', untrailingslashit( plugin_dir_path( __FILE__ ) ) );
-define( 'EASY_EVENT_VERSION', '1.0.0' );
+define( 'EASY_EVENT_VERSION', '1.1.0' );
 
 if ( ! class_exists( 'Easy_Event' ) ) :
 
