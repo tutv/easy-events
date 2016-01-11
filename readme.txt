@@ -1,10 +1,10 @@
-=== Easy Events WP ===
+=== Event WP ===
 Contributors: tutv95, wordpressarena
 Donate link: https://wparena.com/
 Tags: event, widget, custom-post-type
 Requires at least: 3.8
 Tested up to: 4.4.1
-Stable tag: 4.4
+Stable tag: 4.4.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -29,12 +29,15 @@ Create and manage event extremely simple event. Including event widget, beautifu
 == Screenshots ==
 
 = Widget =
-`/assets/screenshots/theme_2015.png`
 
 == Changelog ==
 
 = 1.0.0 =
-* Initialize plugin
+* Initialize plugin.
+
+= 1.1.0
+* Updated meta box for post event.
+* Create count down for event.
 
 == Upgrade Notice ==
 
