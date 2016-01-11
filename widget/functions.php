@@ -56,7 +56,7 @@ function easy_event_upcoming_loop_to_widget( $show ) {
 				$date_event
 			);
 
-			echo '<li number-date="' . get_post_meta( $id, 'easy_event_date_start', true ) . '">
+			echo '<li data-date="' . get_post_meta( $id, 'easy_event_date_start', true ) . '">
 					<div class="left">
 						<span class="day">' . $date_event->format( 'd' ) . '</span>
 						<span class="moth">' . $date_event->format( 'M' ) . '</span>
@@ -79,13 +79,13 @@ function easy_event_upcoming_loop_to_widget( $show ) {
 		EASY_EVENT_URI . '/assets/js/jquery.vticker.min.js', array( 'jquery' ), EASY_EVENT_VERSION
 	);
 	wp_enqueue_script(
-		'widget-event',
-		EASY_EVENT_URI . '/assets/js/widget-event.js',
+		'easy-event',
+		EASY_EVENT_URI . '/assets/js/easy-event.js',
 		array( 'jquery', 'jquery-vticker' ),
 		EASY_EVENT_VERSION
 	);
 
-	wp_enqueue_style( 'easy_event_widget', EASY_EVENT_URI . '/assets/css/style.min.css', array(), EASY_EVENT_VERSION );
+	wp_enqueue_style( 'easy_event', EASY_EVENT_URI . '/assets/css/style.min.css', array(), EASY_EVENT_VERSION );
 }
 
 function easy_event_get_time( $post_id ) {

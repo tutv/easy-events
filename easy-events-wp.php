@@ -43,6 +43,7 @@ if ( ! class_exists( 'Easy_Event' ) ) :
 
 			$this->libraries();
 			$this->includes();
+			$this->template();
 
 			do_action( 'easy_event_init' );
 		}
@@ -60,6 +61,11 @@ if ( ! class_exists( 'Easy_Event' ) ) :
 		public function includes() {
 			require_once 'includes/event-post-type.php';
 			require_once 'includes/metabox.php';
+			require_once 'includes/setting-admin.php';
+		}
+
+		public function template() {
+			require_once 'template/single.php';
 		}
 
 		/**

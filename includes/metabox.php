@@ -5,20 +5,49 @@ function easy_event_register_meta_boxes_event( $meta_boxes ) {
 	$prefix = 'easy_event_';
 
 	$meta_boxes[] = array(
-		'id'         => $prefix . 'times',
-		'title'      => __( 'Time event', 'easy_event' ),
+		'id'         => $prefix . 'settings',
+		'title'      => __( 'Event settings', 'easy_event' ),
 		'post_types' => array( 'easy_event' ),
 		'context'    => 'normal',
 		'priority'   => 'high',
 		'fields'     => array(
 			array(
+				'id'   => $prefix . 'description',
+				'name' => __( 'Description', 'easy_event' ),
+				'desc' => '',
+				'type' => 'textarea',
+			),
+			array(
 				'id'         => $prefix . 'date_start',
-				'name'       => __( 'Start time', 'easy_event' ),
+				'name'       => __( 'Start Date', 'easy_event' ),
 				'desc'       => '',
 				'type'       => 'date',
 				'std'        => date( 'd/m/Y' ),
 				'js_options' => array(
-					'appendText'      => '(dd/mm/yyyy)',
+					'autoSize'        => true,
+					'buttonText'      => __( 'Select Date', 'easy_event' ),
+					'dateFormat'      => 'dd/mm/yy',
+					'numberOfMonths'  => 1,
+					'showButtonPanel' => true,
+					'stepMinute'      => 15,
+				),
+			),
+			array(
+				'id'         => $prefix . 'time_start',
+				'name'       => __( 'Start Time', 'easy_event' ),
+				'desc'       => '',
+				'type'       => 'time',
+				'js_options' => array(
+					'stepMinute' => 5,
+				),
+			),
+			array(
+				'id'         => $prefix . 'date_finish',
+				'name'       => __( 'Finish Date', 'easy_event' ),
+				'desc'       => '',
+				'type'       => 'date',
+				'std'        => date( 'd/m/Y' ),
+				'js_options' => array(
 					'autoSize'        => true,
 					'buttonText'      => __( 'Select Date', 'easy_event' ),
 					'dateFormat'      => 'dd/mm/yy',
@@ -27,18 +56,12 @@ function easy_event_register_meta_boxes_event( $meta_boxes ) {
 				),
 			),
 			array(
-				'id'         => $prefix . 'date_finish',
+				'id'         => $prefix . 'time_finish',
 				'name'       => __( 'Finish Time', 'easy_event' ),
 				'desc'       => '',
-				'type'       => 'date',
-				'std'        => date( 'd/m/Y' ),
+				'type'       => 'time',
 				'js_options' => array(
-					'appendText'      => '(dd/mm/yyyy)',
-					'autoSize'        => true,
-					'buttonText'      => __( 'Select Date', 'easy_event' ),
-					'dateFormat'      => 'dd/mm/yy',
-					'numberOfMonths'  => 1,
-					'showButtonPanel' => true,
+					'stepMinute' => 5,
 				),
 			),
 			array(
@@ -50,13 +73,10 @@ function easy_event_register_meta_boxes_event( $meta_boxes ) {
 				'id'            => $prefix . 'map',
 				'name'          => __( 'Location', 'easy_event' ),
 				'type'          => 'map',
-				// Default location: 'latitude,longitude[,zoom]' (zoom is optional)
 				'std'           => '-6.233406,-35.049906,15',
-				// Name of text field where address is entered. Can be list of text fields, separated by commas (for ex. city, state)
 				'address_field' => $prefix . 'address',
 			),
-
-		),
+		)
 	);
 
 	return $meta_boxes;
