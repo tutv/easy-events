@@ -44,6 +44,9 @@ function easy_event_filter_the_content( $content ) {
 	$content_temp = $content;
 	if ( get_post_type() == 'easy_event' ) {
 		$single_template = get_option( 'easy_event_single_template' );
+		if ( $single_template == '' || $single_template == false ) {
+			$single_template = file_get_contents( EASY_EVENT_DIR . '/template-default/single-content.php' );
+		}
 
 		$post_id = get_the_ID();
 

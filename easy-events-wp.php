@@ -4,7 +4,7 @@
  * Plugin Name: Event WP
  * Plugin URI: https://wparena.com
  * Description: Best simple and useful WordPress Event Plugin.
- * Version: 1.1.2
+ * Version: 1.1.5
  * Author: WPArena
  * Author URI: https://wparena.com
  * Requires at least: 4.1
@@ -22,7 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 define( 'EASY_EVENT_URI', untrailingslashit( plugins_url( '/', __FILE__ ) ) );
 define( 'EASY_EVENT_DIR', untrailingslashit( plugin_dir_path( __FILE__ ) ) );
-define( 'EASY_EVENT_VERSION', '1.1.2' );
+define( 'EASY_EVENT_VERSION', '1.1.5' );
 
 if ( ! class_exists( 'Easy_Event' ) ) :
 

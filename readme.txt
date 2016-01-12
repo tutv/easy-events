@@ -15,9 +15,10 @@ Best simple and useful WordPress Event Plugin.
 Event WP is very useful WordPress Event Plugin. It is easy to install and use. With Event plugin - Event WP, you can create an event quickly, you can set start and end time of an event.
 Besides that, Event WP also provide a widget that display all of event on website for you. Especially, this WordPress Event Plugin can count down time of event, therefore events can be easier to manage and perform. We will update this plugin to add more interesting features to it.
 
-Demo:
-* (Single Event WP)[http://themes.wparena.com/university/event/fifa-world-cup-2018/]
-* (Archive Event WP)[http://themes.wparena.com/university/event/]
+= Demo: =
+
+* [Single Event WP](http://themes.wparena.com/university/event/fifa-world-cup-2018/)
+* [Archive Event WP](http://themes.wparena.com/university/event/)
 
 == Installation ==
 
@@ -51,3 +52,6 @@ Demo:
 
 = 1.0.0 =
 Upgrade immediately.
+
+= 1.1.5 =
+Fix get wrong content

@@ -28,6 +28,9 @@ add_action( 'admin_menu', 'easy_event_add_theme_menu_item' );
  */
 function easy_event_display_input_content_template() {
 	$single_template = get_option( 'easy_event_single_template' );
+	if ( $single_template == '' || $single_template == false ) {
+		$single_template = file_get_contents( EASY_EVENT_DIR . '/template-default/single-content.php' );
+	}
 
 	?>
 	<textarea name="easy_event_single_template" id="easy_event_single_template" cols="100" rows="10"><?php echo $single_template; ?></textarea>
