@@ -14,14 +14,15 @@
  * @return mixed
  */
 function easy_event_override_template( $single_template ) {
-	global $post;
-
-	if ( $post->post_type == 'easy_event' ) {
-		if ( is_archive() ) {
-			if ( locate_template( 'ee-templates/archive.php' ) != '' ) {
-				return locate_template( 'ee-templates/archive.php' );
-			}
+	if ( is_archive() ) {
+		if ( locate_template( 'ee-templates/archive.php' ) != '' ) {
+			return locate_template( 'ee-templates/archive.php' );
 		}
+	}
+
+	global $post;
+	if ( $post != null && $post->post_type == 'easy_event' ) {
+
 
 		if ( locate_template( 'ee-templates/single.php' ) != '' ) {
 			return locate_template( 'ee-templates/single.php' );
@@ -45,7 +46,7 @@ function easy_event_filter_the_content( $content ) {
 	if ( get_post_type() == 'easy_event' ) {
 		$single_template = get_option( 'easy_event_single_template' );
 		if ( $single_template == '' || $single_template == false ) {
-			$single_template = file_get_contents( EASY_EVENT_DIR . '/template-default/single-content.php' );
+			$single_template = file_get_contents( EASY_EVENT_DIR . '/templates-default/single-content.php' );
 		}
 
 		$post_id = get_the_ID();

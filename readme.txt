@@ -17,8 +17,7 @@ Besides that, Event WP also provide a widget that display all of event on websit
 
 = Demo: =
 
-* [Single Event WP](http://themes.wparena.com/university/event/fifa-world-cup-2018/)
-* [Archive Event WP](http://themes.wparena.com/university/event/)
+* [Event WP](http://themes.wparena.com/university/event/)
 
 == Installation ==
 
