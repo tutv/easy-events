@@ -57,3 +57,6 @@ Upgrade immediately.
 
 = 1.1.5 =
 Fix get wrong content
+
+= 1.1.7 =
+Separate Meta box plugin(require)

@@ -4,7 +4,7 @@
  * Plugin Name: Event WP
  * Plugin URI: https://wparena.com
  * Description: Best simple and useful WordPress Event Plugin.
- * Version: 1.1.6
+ * Version: 1.1.7
  * Author: WPArena
  * Author URI: https://wparena.com
  * Requires at least: 4.1
@@ -22,7 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 define( 'EASY_EVENT_URI', untrailingslashit( plugins_url( '/', __FILE__ ) ) );
 define( 'EASY_EVENT_DIR', untrailingslashit( plugin_dir_path( __FILE__ ) ) );
-define( 'EASY_EVENT_VERSION', '1.1.6' );
+define( 'EASY_EVENT_VERSION', '1.1.7' );
 
 if ( ! class_exists( 'Easy_Event' ) ) :
 
@@ -32,7 +32,7 @@ if ( ! class_exists( 'Easy_Event' ) ) :
 		 */
 		function __construct() {
 			add_action( 'init', array( $this, 'init' ) );
-			add_action( 'admin_init', array( $this, 'libraries_admin' ) );
+			add_action( 'admin_init', array( $this, 'admin' ) );
 			add_action( 'widgets_init', array( $this, 'widget' ) );
 			add_action( 'activated_plugin', array( $this, 'install' ) );
 		}
@@ -63,19 +63,21 @@ if ( ! class_exists( 'Easy_Event' ) ) :
 		 * Include libraries
 		 */
 		public function libraries() {
-			require_once 'libraries/metaboxio/meta-box.php';
+			require_once 'libraries/class-tgm-plugin-activation.php';
 		}
 
 		/**
 		 * Include libraries in admin area
 		 */
-		public function libraries_admin() {
+		public function admin() {
+
 		}
 
 		/**
 		 * Include required core
 		 */
 		public function includes() {
+			require_once 'plugins-require.php';
 			require_once 'includes/event-post-type.php';
 			require_once 'includes/metabox.php';
 			require_once 'functions.php';
