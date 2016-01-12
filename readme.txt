@@ -47,6 +47,9 @@ Besides that, Event WP also provide a widget that display all of event on websit
 = 1.1.1 =
 * Updated assets file.
 
+= 1.1.5 =
+* Support excerpt
+
 == Upgrade Notice ==
 
 = 1.0.0 =

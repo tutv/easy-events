@@ -14,7 +14,8 @@
  * @return mixed
  */
 function easy_event_override_template( $single_template ) {
-	if ( is_archive() ) {
+
+	if ( is_post_type_archive( 'easy_event' ) ) {
 		if ( locate_template( 'ee-templates/archive.php' ) != '' ) {
 			return locate_template( 'ee-templates/archive.php' );
 		}
