@@ -37,7 +37,7 @@ function easy_event_register_event_post_type() {
 		'label'               => __( 'Event', 'easy_event' ),
 		'description'         => __( 'Easy Events', 'easy_event' ),
 		'labels'              => $labels,
-		'supports'            => array( 'title', 'editor', 'thumbnail' ),
+		'supports'            => array( 'title', 'editor', 'thumbnail', 'excerpt' ),
 		'taxonomies'          => array( 'category', 'post_tag' ),
 		'hierarchical'        => false,
 		'public'              => true,

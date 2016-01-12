@@ -3,8 +3,8 @@
 /**
  * Plugin Name: Event WP
  * Plugin URI: https://wparena.com
- * Description: Create and manage event extremely simple event. Including event widget.
- * Version: 1.1.0
+ * Description: Best simple and useful WordPress Event Plugin.
+ * Version: 1.1.2
  * Author: WPArena
  * Author URI: https://wparena.com
  * Requires at least: 4.1
@@ -22,7 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 define( 'EASY_EVENT_URI', untrailingslashit( plugins_url( '/', __FILE__ ) ) );
 define( 'EASY_EVENT_DIR', untrailingslashit( plugin_dir_path( __FILE__ ) ) );
-define( 'EASY_EVENT_VERSION', '1.1.0' );
+define( 'EASY_EVENT_VERSION', '1.1.2' );
 
 if ( ! class_exists( 'Easy_Event' ) ) :
 
@@ -32,15 +32,18 @@ if ( ! class_exists( 'Easy_Event' ) ) :
 		 */
 		function __construct() {
 			add_action( 'init', array( $this, 'init' ) );
+			add_action( 'admin_init', array( $this, 'libraries_admin' ) );
 			add_action( 'widgets_init', array( $this, 'widget' ) );
-			register_activation_hook( __FILE__, array( 'Easy_Event', 'install' ) );
+			add_action( 'activated_plugin', array( $this, 'install' ) );
 		}
 
 		/**
 		 * Install
 		 */
 		public function install() {
-
+			$content = file_get_contents( EASY_EVENT_DIR . '/templates-default/single-content.php' );
+			update_option( 'easy_event_single_template', $content );
+			update_option( 'easy_event_excerpt_length', 250 );
 		}
 
 		/**
@@ -64,11 +67,19 @@ if ( ! class_exists( 'Easy_Event' ) ) :
 		}
 
 		/**
+		 * Include libraries in admin area
+		 */
+		public function libraries_admin() {
+		}
+
+		/**
 		 * Include required core
 		 */
 		public function includes() {
 			require_once 'includes/event-post-type.php';
 			require_once 'includes/metabox.php';
+			require_once 'functions.php';
+			require_once 'includes/setting-admin.php';
 		}
 
 		/**

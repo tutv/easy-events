@@ -6,10 +6,44 @@
  * Time: 9:21 AM
  */
 
+/**
+ *  Override Easy Event Template
+ *
+ * @param $single_template
+ *
+ * @return mixed
+ */
+function easy_event_override_template( $single_template ) {
+	global $post;
+
+	if ( $post->post_type == 'easy_event' ) {
+		if ( is_archive() ) {
+			if ( locate_template( 'ee-templates/archive.php' ) != '' ) {
+				return locate_template( 'ee-templates/archive.php' );
+			}
+		}
+
+		if ( locate_template( 'ee-templates/single.php' ) != '' ) {
+			return locate_template( 'ee-templates/single.php' );
+		}
+	}
+
+	return $single_template;
+}
+
+add_filter( 'template_include', 'easy_event_override_template' );
+
+/**
+ * Filter Easy Event default
+ *
+ * @param $content
+ *
+ * @return mixed
+ */
 function easy_event_filter_the_content( $content ) {
 	$content_temp = $content;
 	if ( get_post_type() == 'easy_event' ) {
-		$single_template = file_get_contents( EASY_EVENT_DIR . '/templates/single-content.php' );
+		$single_template = get_option( 'easy_event_single_template' );
 
 		$post_id = get_the_ID();
 

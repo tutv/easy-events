@@ -3,12 +3,12 @@
 function easy_event_settings_page() {
 	?>
 	<div class="wrap">
-		<h1><?php esc_html_e( 'Debugging WP', 'easy_event' ); ?></h1>
+		<h1><?php esc_html_e( 'Event WP', 'easy_event' ); ?></h1>
 
 		<form method="post" action="options.php">
 			<?php
-			settings_fields( "section" );
-			do_settings_sections( "easy-event-options" );
+			settings_fields( 'ee_section' );
+			do_settings_sections( 'easy-event-options' );
 			submit_button();
 			?>
 		</form>
@@ -23,7 +23,10 @@ function easy_event_add_theme_menu_item() {
 add_action( 'admin_menu', 'easy_event_add_theme_menu_item' );
 
 
-function easy_event_display_select_theme_element() {
+/**
+ * Input Single Content Template
+ */
+function easy_event_display_input_content_template() {
 	$single_template = get_option( 'easy_event_single_template' );
 
 	?>
@@ -31,12 +34,28 @@ function easy_event_display_select_theme_element() {
 	<?php
 }
 
+/**
+ * Input excerpt length
+ */
+function easy_event_display_input_excerpt_length() {
+	$excerpt_length = get_option( 'easy_event_excerpt_length' );
+	if ( $excerpt_length == false ) {
+		$excerpt_length = 250;
+	}
+
+	?>
+	<input type="number" name="easy_event_excerpt_length" id="easy_event_excerpt_length" value="<?php echo esc_attr( $excerpt_length ); ?>">
+	<?php
+}
+
 function easy_event_display_theme_panel_fields() {
-	add_settings_section( 'section', 'All Settings', null, 'easy-event-options' );
+	add_settings_section( 'ee_section', 'All Settings', null, 'easy-event-options' );
 
-	add_settings_field( 'easy_event_single_template', esc_html__( 'Single Template', 'easy_event' ), 'easy_event_display_select_theme_element', 'easy-event-options', 'section' );
+	add_settings_field( 'easy_event_single_template', esc_html__( 'Content Template', 'easy_event' ), 'easy_event_display_input_content_template', 'easy-event-options', 'ee_section' );
+	register_setting( 'ee_section', 'easy_event_single_template' );
 
-	register_setting( 'section', 'easy_event_single_template' );
+	add_settings_field( 'easy_event_excerpt_length', esc_html__( 'Excerpt Length', 'easy_event' ), 'easy_event_display_input_excerpt_length', 'easy-event-options', 'ee_section' );
+	register_setting( 'ee_section', 'easy_event_excerpt_length' );
 }
 
 add_action( 'admin_init', 'easy_event_display_theme_panel_fields' );
