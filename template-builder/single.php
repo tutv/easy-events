@@ -79,6 +79,20 @@ function easy_event_filter_the_content( $content ) {
 		$address = get_post_meta( $post_id, 'easy_event_address', true );
 		$content = str_replace( '[ee_address]', $address, $content );
 
+		// Map
+		$ee_map = '';
+		$map    = get_post_meta( $post_id, 'easy_event_map', true );
+		if ( $map != false && $map != '' ) {
+			$map_size       = __( '200x100', 'easy_event' );
+			$map_zoom       = __( '13', 'easy_event' );
+			$map_icon_lable = __( 'Here', 'easy_event' );
+			$ee_image_map   = sprintf( '//maps.googleapis.com/maps/api/staticmap?zoom=%s&scale=false&size=%s&maptype=roadmap&format=png&visual_refresh=true&markers=size:mid|label:%s|%s', $map_zoom, $map_size, $map_icon_lable, $map );
+
+			$ee_map = '<img class="ee_map" src="' . $ee_image_map . '" alt="' . $address . '" >';
+		}
+
+		$content = str_replace( '[ee_map]', $ee_map, $content );
+
 		// Top
 		$top_html = '';
 		$image    = get_post_thumbnail_id( $post_id );
@@ -91,37 +105,63 @@ function easy_event_filter_the_content( $content ) {
 		/**
 		 * Count down
 		 */
+		$my_time = easy_event_get_my_time();
 		if ( $start_date != '' ) {
-			$time_event = $start_date . ' ';
+			$time_start_event = $start_date . ' ';
 			if ( $start_time == '' ) {
-				$time_event .= '00:00:00';
+				$time_start_event .= '00:00:00';
 			} else {
-				$time_event .= $start_time . ':00';
+				$time_start_event .= $start_time . ':00';
 			}
-
-			$time_builder = date_create()->createFromFormat(
+			$time_start_event_builder = date_create()->createFromFormat(
 				'd/m/Y H:i:s',
-				$time_event
+				$time_start_event
 			);
 
-			$top_html .= '<div class="ee-count-down" data-time="' . $time_builder->format( 'Y/m/d H:i:s' ) . '">
-			<div class="days ee_round">
-				<div class="number">0</div>
-				<div class="text">' . esc_html__( 'Days', 'easy_event' ) . '</div>
-			</div>
-			<div class="hours ee_round">
-				<div class="number">0</div>
-				<div class="text">' . esc_html__( 'Hours', 'easy_event' ) . '</div>
-			</div>
-			<div class="minutes ee_round">
-				<div class="number">0</div>
-				<div class="text">' . esc_html__( 'Minutes', 'easy_event' ) . '</div>
-			</div>
-			<div class="seconds ee_round">
-				<div class="number">0</div>
-				<div class="text">' . esc_html__( 'Seconds', 'easy_event' ) . '</div>
-			</div>
-		</div>';
+			$time_finish_event = $time_start_event;
+			if ( $finish_date != '' ) {
+				$time_finish_event = $finish_date . ' ';
+
+				if ( $finish_time == '' ) {
+					$time_finish_event .= '00:00:00';
+				} else {
+					$time_finish_event .= $finish_time . ':00';
+				}
+			}
+			$time_finish_event_builder = date_create()->createFromFormat(
+				'd/m/Y H:i:s',
+				$time_finish_event
+			);
+
+			$my_time_timestamp = $my_time->getTimestamp();
+			$start_timestamp   = $time_start_event_builder->getTimestamp();
+			$finish_timestamp  = $time_finish_event_builder->getTimestamp();
+
+			// Took place
+			if ( $my_time_timestamp > $finish_timestamp ) {
+				$top_html .= '<div class="ee-top-inner"><div class="ee-notify">' . esc_html__( 'This event took place.', 'easy_event' ) . '</div></div>';
+			} elseif ( $my_time_timestamp < $start_timestamp ) {//Upcoming
+				$top_html .= '<div class="ee-top-inner"><div class="ee-count-down" data-time="' . $time_start_event_builder->format( 'Y/m/d H:i:s' ) . '">
+					<div class="days ee_round">
+						<div class="number">0</div>
+						<div class="text">' . esc_html__( 'Days', 'easy_event' ) . '</div>
+					</div>
+					<div class="hours ee_round">
+						<div class="number">0</div>
+						<div class="text">' . esc_html__( 'Hours', 'easy_event' ) . '</div>
+					</div>
+					<div class="minutes ee_round">
+						<div class="number">0</div>
+						<div class="text">' . esc_html__( 'Minutes', 'easy_event' ) . '</div>
+					</div>
+					<div class="seconds ee_round">
+						<div class="number">0</div>
+						<div class="text">' . esc_html__( 'Seconds', 'easy_event' ) . '</div>
+					</div>
+				</div></div>';
+			} else {//Happening
+				$top_html .= '<div class="ee-top-inner"><div class="ee-notify">' . esc_html__( 'This event is taking place...', 'easy_event' ) . '</div></div>';
+			}
 		}
 
 		if ( $top_html != '' ) {

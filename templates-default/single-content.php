@@ -22,6 +22,7 @@
 		<div class="ee-box">
 			<div class="heading">Address</div>
 			<div>[ee_address]</div>
+			<div>[ee_map]</div>
 		</div>
 	</div>
 </div>

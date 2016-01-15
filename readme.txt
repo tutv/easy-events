@@ -50,6 +50,9 @@ Besides that, Event WP also provide a widget that display all of event on websit
 = 1.1.5 =
 * Support excerpt
 
+= 1.1.8 =
+* Support view Google Maps
+
 == Upgrade Notice ==
 
 = 1.0.0 =

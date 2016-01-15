@@ -47,3 +47,20 @@ function easy_event_the_excerpt( $post_excerpt ) {
 }
 
 add_filter( 'the_excerpt', 'easy_event_the_excerpt' );
+
+function easy_event_get_my_time() {
+	$gmt_offset = intval( get_option( 'gmt_offset' ) );
+	$time_zones = $timezone_identifiers = DateTimeZone::listIdentifiers();
+	foreach ( $time_zones as $time_zone ) {
+		$date            = new DateTime( 'now', new DateTimeZone( $time_zone ) );
+		$offset_in_hours = $date->getOffset() / 60 / 60;
+		if ( ! is_null( $gmt_offset ) && $gmt_offset == $offset_in_hours ) {
+			date_default_timezone_set( $time_zone );
+			break;
+		}
+	}
+
+	$my_time = date_create();
+
+	return $my_time;
+}
